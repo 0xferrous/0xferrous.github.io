@@ -1,111 +1,111 @@
-/* Recursive Font - Loaded from CDN */
+/* Recursive Variable Font - Direct WOFF2 load */
 
-/* Import Recursive from GitHub releases via jsDelivr CDN */
-@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Code/RecursiveMono/RecursiveMono-Linear.woff2');
-@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Code/RecursiveMono/RecursiveMono-Casual.woff2');
-@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Sans/RecursiveSans-Linear.woff2');
-
-/* Fallback: Use variable font from CDN */
 @font-face {
-  font-family: 'Recursive';
-  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
+  font-family: 'Recursive Variable';
+  src: url('https://unpkg.com/@fontsource-variable/recursive@5.2.6/files/recursive-latin-full-normal.woff2') format('woff2');
   font-weight: 300 1000;
+  font-style: normal;
   font-display: swap;
 }
 
-/* Define specific font families using the variable font */
-@font-face {
-  font-family: "RecursiveSans";
-  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
-  font-weight: 300 1000;
-  font-variation-settings: "MONO" 0, "CASL" 0;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RecursiveMono";
-  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
-  font-weight: 300 1000;
-  font-variation-settings: "MONO" 1, "CASL" 1;
-  font-display: swap;
-}
+/* Define font families using variable font with specific MONO axis settings */
+/* Use Recursive directly with variation settings applied per element */
 
 /* Apply fonts */
 * {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable", "Fallback Outline" !important;
+  font-variation-settings: "CASL" 0, "MONO" 0 !important;
 }
 
 /* Body text */
 body, p, div, span, li, td, th {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable", "Fallback Outline" !important;
+  font-variation-settings: "CASL" 0, "MONO" 0 !important;
   font-weight: 400 !important;
 }
 
 /* Links use monospace */
 a {
-  font-family: "RecursiveMono", monospace !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 400 !important;
 }
 
 /* Post list links use sans-serif */
 .list a {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 600 !important;
 }
 
 /* Headers with distinct weights */
 h1, h1::before {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 900 !important;
   font-size: 1.4rem !important;
 }
 
 h1 a {
-  font-family: "RecursiveMono", monospace !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 900 !important;
   font-size: 1.4rem !important;
 }
 
 h2, h2::before {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 700 !important;
   font-size: 1.3rem !important;
 }
 
 h2 a {
-  font-family: "RecursiveMono", monospace !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 700 !important;
   font-size: 1.3rem !important;
 }
 
 h3, h3::before {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 700 !important;
   font-size: 1.2rem !important;
 }
 
 h3 a {
-  font-family: "RecursiveMono", monospace !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 700 !important;
   font-size: 1.2rem !important;
 }
 
 h4, h5, h6, h4::before, h5::before, h6::before {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
 }
 
 h4 a, h5 a, h6 a {
-  font-family: "RecursiveMono", monospace !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
 }
 
-/* Code text */
-code, pre, pre *, .hljs, .hljs *, tt, kbd, samp,
-code *, pre code, pre code * {
-  font-family: "RecursiveMono", monospace !important;
+/* Override theme code font with Recursive mono */
+:root {
+  --code-font: "Recursive Variable" !important;
+}
+
+/* Code text - use higher specificity with mono settings */
+html body code, html body pre, html body pre *, html body .hljs, html body .hljs *, 
+html body tt, html body kbd, html body samp, html body code *, 
+html body pre code, html body pre code * {
+  font-family: "Recursive Variable", "Courier New", monospace !important;
+  font-variation-settings: "CASL" 1, "MONO" 1 !important;
   font-weight: 400 !important;
 }
 
@@ -120,7 +120,8 @@ code strong, pre strong, .hljs-keyword, .hljs-built_in {
 
 /* Page header (main page title) */
 .page-header {
-  font-family: "RecursiveSans", sans-serif !important;
+  font-family: "Recursive Variable" !important;
+  font-variation-settings: "MONO" 0, "CASL" 0 !important;
   font-weight: 900 !important;
   font-size: 2.2rem !important;
 }
