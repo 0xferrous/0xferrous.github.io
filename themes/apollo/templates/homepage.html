@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-    {{ post_macros::home_page(section=section) }}
+    {% set posts_section = get_section(path="posts/_index.md") %}
+    {{ post_macros::home_page(section=section, posts_section=posts_section) }}
 {% endblock main_content %}
