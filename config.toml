@@ -18,9 +18,15 @@ highlight_code = true
 [extra]
 # Put all your custom variables here
 theme = "auto"
+stylesheets = [
+    "recursive-font.css"
+]
 socials = [
     { name = "github", url = "https://github.com/0xferrous", icon = "github" },
     { name = "twitter", url = "https://twitter.com/0xferrous", icon = "twitter" },
 ]
 menu = [
+    { name = "/posts", url = "/posts", weight = 1 },
+    { name = "/projects", url = "/projects", weight = 2 },
+    { name = "/tags", url = "/tags", weight = 3 },
 ]

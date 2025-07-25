@@ -1,0 +1,147 @@
+/* Recursive Font - Static Files for Reliable Weights */
+
+/* Proportional Sans fonts for body text */
+@font-face {
+  font-family: "RecursiveSans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Recursive/RecursiveSansLnrSt-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RecursiveSans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/Recursive/RecursiveSansLnrSt-Bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RecursiveSans";
+  font-style: normal;
+  font-weight: 900;
+  src: url("fonts/Recursive/RecursiveSansLnrSt-Black.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Monospace fonts for code */
+@font-face {
+  font-family: "RecursiveMono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Recursive/RecMonoCasual-Regular-1.085.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RecursiveMono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/Recursive/RecMonoCasual-Bold-1.085.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Apply fonts */
+* {
+  font-family: "RecursiveSans", sans-serif !important;
+}
+
+/* Body text */
+body, p, div, span, li, td, th {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* Links use monospace */
+a {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 400 !important;
+}
+
+/* Post list links use sans-serif */
+.list a {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Headers with distinct weights */
+h1, h1::before {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 1.4rem !important;
+}
+
+h1 a {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 900 !important;
+  font-size: 1.4rem !important;
+}
+
+h2, h2::before {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+}
+
+h2 a {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+}
+
+h3, h3::before {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+}
+
+h3 a {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+}
+
+h4, h5, h6, h4::before, h5::before, h6::before {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
+
+h4 a, h5 a, h6 a {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
+
+/* Code text */
+code, pre, pre *, .hljs, .hljs *, tt, kbd, samp,
+code *, pre code, pre code * {
+  font-family: "RecursiveMono", monospace !important;
+  font-weight: 400 !important;
+}
+
+/* Bold text and code */
+strong, b {
+  font-weight: 700 !important;
+}
+
+code strong, pre strong, .hljs-keyword, .hljs-built_in {
+  font-weight: 700 !important;
+}
+
+/* Page header (main page title) */
+.page-header {
+  font-family: "RecursiveSans", sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 2.2rem !important;
+}
+
+/* Font sizing adjustments */
+body {
+  font-size: 1.05em !important;
+}
+
+code, pre {
+  font-size: 0.9em !important;
+}

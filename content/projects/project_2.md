@@ -2,6 +2,7 @@
 title = "Project 2"
 description = "Example description"
 weight = 1
+draft = true
 
 [extra]
 # You can also crop the image in the url by adjusting w=/h=

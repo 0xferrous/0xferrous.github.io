@@ -1,6 +1,7 @@
 +++
 title = "Math Symbol Example"
 date = "2023-01-06"
+draft = true
 
 [taxonomies]
 tags=["example"]

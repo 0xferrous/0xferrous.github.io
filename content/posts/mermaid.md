@@ -1,6 +1,7 @@
 +++
 title = "Mermaid Example"
 date = "2024-12-26"
+draft = true
 
 [taxonomies]
 tags=["example"]
