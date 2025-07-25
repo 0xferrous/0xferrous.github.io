@@ -1,44 +1,32 @@
-/* Recursive Font - Static Files for Reliable Weights */
+/* Recursive Font - Loaded from CDN */
 
-/* Proportional Sans fonts for body text */
+/* Import Recursive from GitHub releases via jsDelivr CDN */
+@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Code/RecursiveMono/RecursiveMono-Linear.woff2');
+@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Code/RecursiveMono/RecursiveMono-Casual.woff2');
+@import url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Sans/RecursiveSans-Linear.woff2');
+
+/* Fallback: Use variable font from CDN */
 @font-face {
-  font-family: "RecursiveSans";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/Recursive/RecursiveSansLnrSt-Regular.ttf") format("truetype");
+  font-family: 'Recursive';
+  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
+  font-weight: 300 1000;
   font-display: swap;
 }
 
+/* Define specific font families using the variable font */
 @font-face {
   font-family: "RecursiveSans";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/Recursive/RecursiveSansLnrSt-Bold.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RecursiveSans";
-  font-style: normal;
-  font-weight: 900;
-  src: url("fonts/Recursive/RecursiveSansLnrSt-Black.ttf") format("truetype");
-  font-display: swap;
-}
-
-/* Monospace fonts for code */
-@font-face {
-  font-family: "RecursiveMono";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/Recursive/RecMonoCasual-Regular-1.085.ttf") format("truetype");
+  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
+  font-weight: 300 1000;
+  font-variation-settings: "MONO" 0, "CASL" 0;
   font-display: swap;
 }
 
 @font-face {
   font-family: "RecursiveMono";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/Recursive/RecMonoCasual-Bold-1.085.ttf") format("truetype");
+  src: url('https://cdn.jsdelivr.net/gh/arrowtype/recursive@main/fonts/ArrowType-Recursive-1.085/Recursive_Desktop/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.woff2') format('woff2-variations');
+  font-weight: 300 1000;
+  font-variation-settings: "MONO" 1, "CASL" 1;
   font-display: swap;
 }
 

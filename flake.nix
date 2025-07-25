@@ -17,9 +17,6 @@
             # Core website building
             zola
             
-            # Fonts
-            recursive  # Recursive font family
-            
             # Formatting and linting
             treefmt
             alejandra  # Nix formatter
@@ -57,18 +54,7 @@
             echo "Local dev:   http://127.0.0.1:1111"
             echo ""
             
-            # Create fonts directory and symlink Recursive font
-            mkdir -p static/fonts/Recursive
-            # Clean old symlinks
-            rm -f static/fonts/Recursive/Recursive-*.ttf static/fonts/Recursive/Recursive-*.otf 2>/dev/null || true
-            # Link all font files with proper expansion
-            for font in ${pkgs.recursive}/share/fonts/truetype/*.ttf; do
-              [ -f "$font" ] && ln -sf "$font" static/fonts/Recursive/
-            done
-            for font in ${pkgs.recursive}/share/fonts/opentype/*.otf; do
-              [ -f "$font" ] && ln -sf "$font" static/fonts/Recursive/
-            done
-            echo "📚 Recursive font files linked to static/fonts/Recursive/"
+            echo "📚 Using Recursive fonts from CDN - no local files needed"
             
             # Set up aliases for convenience
             alias serve="zola serve"
@@ -108,6 +94,7 @@
 
         apps.build = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "build" ''
+            echo "📚 Building site with CDN fonts..."
             ${pkgs.zola}/bin/zola build
           '';
         };
