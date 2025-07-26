@@ -1,5 +1,5 @@
 +++
-title = "Building ansi.nvim: A Neovim Plugin for Beautiful ANSI Color Rendering"
+title = "ansi.nvim: A Neovim Plugin for Beautiful ANSI Color Rendering"
 date = "2025-07-25"
 
 [taxonomies]
