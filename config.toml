@@ -1,5 +1,7 @@
 # The URL the site will be built for
 base_url = "https://0xferrous.github.io"
+title = "0xferrous - Development Blog"
+description = "Personal development blog covering programming, tools, and technical insights."
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -17,6 +19,10 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+author = "0xferrous"
+keywords = ["development", "programming", "coding", "tools", "tech", "software"]
+og_image = "/images/og-image.png"
+twitter_username = "0xferrous"
 theme = "auto"
 stylesheets = [
     "recursive-font.css"
