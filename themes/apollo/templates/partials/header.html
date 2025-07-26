@@ -30,9 +30,11 @@
     {% else %}
         <title>
             {% if page.title %}
-                {{ page.title }}
+                {{ config.title }} - {{ page.title }}
             {% elif section.title %}
-                {{ section.title }}
+                {{ config.title }} - {{ section.title }}
+            {% elif taxonomy %}
+                {{ config.title }} - {{ taxonomy.name | title }}
             {% elif config.title %}
                 {{ config.title }}
             {% else %}
@@ -42,7 +44,7 @@
 
         {% if not page_has_og_title %}
             <meta property="og:title"
-                  content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
+                  content="{% if page.title -%}{{ config.title }} - {{ page.title }}{% elif section.title -%}{{ config.title }} - {{ section.title }}{% elif taxonomy -%}{{ config.title }} - {{ taxonomy.name | title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
         {% endif %}
     {% endif %}
 
