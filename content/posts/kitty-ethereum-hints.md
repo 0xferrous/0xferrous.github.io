@@ -113,7 +113,13 @@ The magic here is Kitty's `launch --type=overlay` - it opens fzf in a floating w
 
 ## How It Works in Practice
 
-Let me show you a real example. Here's what happens when I'm debugging a failed transaction:
+Let me show you a real example. Here's what I see in my terminal:
+
+![Kitty hints highlighting transaction hashes](/images/kitty-ethereum-hints/hints-in-action.png)
+
+In the screenshot above, you can see Kitty hints in action - all the transaction hashes are highlighted in yellow with letter labels (a, b, c, etc.). I triggered this by pressing `Ctrl+Shift+E`, then `Shift+T`.
+
+Here's another example with contract addresses:
 
 ```bash
 $ forge test -vvv
@@ -128,7 +134,7 @@ testTransfer()
   └─ ← revert: ERC20: insufficient allowance
 ```
 
-I want to check that Token contract on Etherscan:
+When I want to check that Token contract on Etherscan:
 
 1. Press `Ctrl+Shift+E`, then `Shift+A`
 2. Kitty highlights all addresses in yellow with letter labels
