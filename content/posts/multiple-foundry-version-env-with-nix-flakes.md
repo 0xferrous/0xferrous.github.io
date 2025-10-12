@@ -51,9 +51,6 @@ let
   foundry-mixed = pkgs.symlinkJoin {
     name = "foundry-mixed";
     paths = [ foundry-stable ];
-    nativeBuildInputs = [
-      pkgs.makeWrapper
-    ];
     postBuild = ''
       ${lib.concatMapStringsSep "\n" (x: "ln -s ${foundry-nightly}/bin/${x} $out/bin/n${x}") components}
     '';
