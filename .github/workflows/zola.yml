@@ -36,7 +36,7 @@ jobs:
     - name: Build website for IPFS
       run: nix run .#build-ipfs
 
-    - name: Upload to pinata
+    - name: IPFS publishing, pinning and IPNS update
       id: pinata
       uses: ./.github/actions/pinata-upload
       with:
