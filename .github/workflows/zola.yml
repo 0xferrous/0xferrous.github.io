@@ -32,8 +32,8 @@ jobs:
     - name: Setup Nix cache
       uses: DeterminateSystems/magic-nix-cache-action@main
       
-    - name: Build website
-      run: nix run .#build
+    - name: Build website for IPFS
+      run: nix run .#build-ipfs
 
     - name: Upload to pinata
       id: pinata
@@ -47,10 +47,13 @@ jobs:
         ipns-name: ${{ secrets.IPNS_NAME }}
         filebase-access-key: ${{ secrets.FILEBASE_ACCESS_KEY }}
         filebase-secret-key: ${{ secrets.FILEBASE_SECRET_KEY }}
-      
+
+    - name: Build website for GitHub Pages
+      run: nix run .#build-github
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
-      
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:

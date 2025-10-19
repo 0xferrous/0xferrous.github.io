@@ -50,12 +50,14 @@
             echo "🚀 Development environment for 0xferrous.github.io"
             echo ""
             echo "Available commands:"
-            echo "  zola build         - Build the website"
-            echo "  zola serve         - Serve locally with hot reload"
-            echo "  zola check         - Check for errors"
-            echo "  treefmt            - Format all files"
-            echo "  gh pr create       - Create GitHub PR"
-            echo "  ipfs-ops           - IPFS operations (upload/IPNS)"
+            echo "  zola build              - Build with default base URL"
+            echo "  nix run .#build-github  - Build for GitHub Pages"
+            echo "  nix run .#build-ipfs    - Build for IPFS"
+            echo "  zola serve              - Serve locally with hot reload"
+            echo "  zola check              - Check for errors"
+            echo "  treefmt                 - Format all files"
+            echo "  gh pr create            - Create GitHub PR"
+            echo "  ipfs-ops                - IPFS operations (upload/IPNS)"
             echo ""
             echo "Website URL: https://0xferrous.github.io"
             echo "Local dev:   http://127.0.0.1:1111"
@@ -66,6 +68,8 @@
             # Set up aliases for convenience
             alias serve="zola serve"
             alias build="zola build"
+            alias build-github="nix run .#build-github"
+            alias build-ipfs="nix run .#build-ipfs"
             alias check="zola check"
             alias fmt="treefmt"
             alias watch="watchexec -e md,toml,scss,html -- zola build"
@@ -103,6 +107,21 @@
           drv = pkgs.writeShellScriptBin "build" ''
             echo "📚 Building site with CDN fonts..."
             ${pkgs.zola}/bin/zola build
+          '';
+        };
+
+        apps.build-github = flake-utils.lib.mkApp {
+          drv = pkgs.writeShellScriptBin "build-github" ''
+            echo "📚 Building site for GitHub Pages..."
+            ${pkgs.zola}/bin/zola build --base-url "https://0xferrous.github.io"
+          '';
+        };
+
+        apps.build-ipfs = flake-utils.lib.mkApp {
+          drv = pkgs.writeShellScriptBin "build-ipfs" ''
+            echo "📚 Building site for IPFS..."
+            # IPFS uses relative URLs or specify your IPFS gateway
+            ${pkgs.zola}/bin/zola build --base-url "https://0xferrous.eth.limo"
           '';
         };
 
