@@ -29,10 +29,13 @@ stylesheets = [
 ]
 socials = [
     { name = "github", url = "https://github.com/0xferrous", icon = "github" },
-    { name = "twitter", url = "https://twitter.com/0xferrous", icon = "twitter" },
+    { name = "twitter", url = "https://twitter.com/0xferrous", icon = "x-twitter" },
 ]
 menu = [
     { name = "/posts", url = "/posts", weight = 1 },
     { name = "/projects", url = "/projects", weight = 2 },
     { name = "/tags", url = "/tags", weight = 3 },
 ]
+
+# Profile photo
+profile_photo = "images/profile.jpg"

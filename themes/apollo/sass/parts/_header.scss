@@ -2,7 +2,13 @@
   font-size: 2.5em;
   line-height: 100%;
   font-family: var(--header-font);
-  margin: 4rem 0px 1rem 0px;
+  margin: 0 0px 1rem 0px;
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    font-size: 1.8em;
+  }
 }
 
 .centered-header {
@@ -32,7 +38,7 @@ header .main {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   font-size: 1.5rem;
 
@@ -40,15 +46,37 @@ header .main {
   margin-bottom: 5px;
 }
 
-header .social img,
 header #dark-mode-toggle img {
   width: 16px;
   height: 16px;
 }
 
-header .socials {
-  margin-bottom: 10px;
-  /* Space between social icons and menu items */
+nav .socials {
+  display: inline-flex;
+  gap: 0;
+  align-items: center;
+  vertical-align: middle;
+}
+
+nav .social {
+  border-bottom: 3px solid var(--primary-color);
+  background-image: none;
+  margin-left: 0.5em;
+  display: inline-block;
+  line-height: 1;
+  padding: 2px 2px 0 2px;
+}
+
+nav .social:hover {
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+}
+
+nav .social img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: block;
 }
 
 #dark-mode-toggle {
@@ -71,6 +99,24 @@ header .socials {
   background-color: transparent;
 }
 
+.profile-photo {
+  border-bottom: unset;
+  background-image: unset;
+}
+
+.profile-photo > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.profile-photo:hover {
+  background-color: transparent;
+}
+
+
 .socials {
   /* flex-child */
   flex-grow: 0;
@@ -79,7 +125,7 @@ header .socials {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   gap: 6px;
 }
 
