@@ -105,3 +105,26 @@ Once configured, your Keycard can be used as an OpenPGP smartcard for various se
 5. **File Encryption** - Encrypt sensitive files and documents with GPG
 
 The key advantage is that your private keys never leave the secure element on the Keycard, providing hardware-backed security for all these operations.
+
+### LUKS Decryption
+
+1. Generate a random keyfile: `openssl rand -hex 32 > keyfile`
+2. Encrypt the keyfile with your GPG key: `cat keyfile | gpg --encrypt --armor -r <key-id> > keyfile.gpg`
+3. Export the gpg key: `gpg --export --armor --output gpg-key.asc <key-id>`
+4. Add the keyfile to luks partition: `sudo cryptsetup luksAddKey /dev/<partition> <keyfile>`
+5. Enable decryption at boot, following is how to do in nixos:
+   ```nix
+   {
+      boot.initrd.luks.gpgSupport = true;
+      boot.initrd.luks.devices."root" = {
+         device = "/dev/disk/by-uuid/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+         gpgCard = {
+            encryptedPass = ./keyfile.gpg;
+            publicKey = ./gpg-key.asc;
+            # time in seconds to wait for smartcard before timeout
+            gracePeroid = 10;
+         };
+         fallbackToPassword = true;
+      };
+   }
+   ```
