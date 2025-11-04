@@ -113,7 +113,7 @@
         apps.build-github = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "build-github" ''
             echo "📚 Building site for GitHub Pages..."
-            ${pkgs.zola}/bin/zola build --base-url "https://0xferrous.github.io"
+            ${pkgs.zola}/bin/zola build --base-url "https://0xf.rs"
           '';
         };
 
