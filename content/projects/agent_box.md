@@ -1,10 +1,11 @@
 +++
 title = "agent-box"
-description = "Run AI coding agents in sandboxed containers with full permissions without risking your host system."
-weight = 3
+description = "Sandboxed containers for AI coding agents with disposable Git/Jujutsu workspaces"
+weight = 4
 
 [extra]
 link_to = "https://github.com/0xferrous/agent-box"
+updated_at = "2026-05-04"
 +++
 
 A Rust CLI tool that manages isolated container environments for AI coding agents. Combines Git/Jujutsu workspace management with Podman/Docker containers, giving agents unrestricted access inside disposable sandboxes.

@@ -1,0 +1,41 @@
+name: Update projects
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-projects
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Sync project cards
+        run: |
+          ./scripts/sync-projects.nu content/projects
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet -- content/projects; then
+            echo "No project changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/projects
+          git commit -m "docs: refresh projects"
+          git push

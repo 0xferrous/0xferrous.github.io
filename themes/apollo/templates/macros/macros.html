@@ -215,7 +215,9 @@
 {% macro cards_posts(pages) %}
     <div class="cards">
         {%- for page in pages %}
-            <div class="card">
+            <div class="card"
+                 {% if page.extra.updated_at %}data-project-updated="{{ page.extra.updated_at }}"{% endif %}
+                 data-project-title="{{ page.title | lower }}">
                 {% if page.extra.local_image %}
                     <img class="card-image"
                          alt="{{ page.extra.local_image }}"
@@ -224,9 +226,18 @@
                     <img class="card-image"
                          alt="{{ page.extra.remote_image }}"
                          src="{{ page.extra.remote_image }}" />
-                {% else %}
-                    <div class="card-image-placeholder"></div>
                 {% endif %}
+
+                <div class="card-meta">
+                    {%- if page.date %}
+                        <time>updated {{ page.date | date(format="%Y-%m-%d") }}</time>
+                    {% elif page.extra.updated_at %}
+                        <time>updated {{ page.extra.updated_at }}</time>
+                    {% elif page.date %}
+                        <time>last updated {{ page.date | date(format="%Y-%m-%d") }}</time>
+                    {% endif -%}
+                    {% if page.draft %}<span class="draft-label">DRAFT</span>{% endif %}
+                </div>
 
                 <div class="card-info">
                     <h1 class="card-title">
@@ -236,13 +247,6 @@
                             <a href={{ page.permalink | safe }}>{{ page.title }}</a>
                         {% endif %}
                     </h1>
-
-                    <div class="meta">
-                        {%- if page.date %}
-                            <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
-                        {% endif -%}
-                        {% if page.draft %}<span class="draft-label">DRAFT</span>{% endif %}
-                    </div>
 
                     <div class="card-description">
                         {% if page.description %}{{ page.description }}{% endif %}

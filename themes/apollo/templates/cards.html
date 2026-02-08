@@ -5,7 +5,19 @@
         {% set section = get_section(path=section.extra.section_path) %}
     {% endif -%}
 
-    {{ post_macros::page_header(title=section.title) }}
+    {% if section.title == "Projects" %}
+        <div class="projects-header">
+            {{ post_macros::page_header(title=section.title) }}
+
+            <div class="projects-sort">
+                <span>Sort by:</span>
+                <a href="{{ get_url(path="projects") }}?sort=name">name</a>
+                <a href="{{ get_url(path="projects") }}?sort=updated">updated</a>
+            </div>
+        </div>
+    {% else %}
+        {{ post_macros::page_header(title=section.title) }}
+    {% endif %}
 
     <main>
         {%- if paginator %}
@@ -16,6 +28,10 @@
 
         {{ post_macros::cards_posts(pages=show_pages) }}
     </main>
+
+    {% if section.title == "Projects" %}
+        <script defer src="{{ get_url(path="js/projects-sort.js") }}"></script>
+    {% endif %}
 
     {% if paginator %}
         <ul class="pagination">

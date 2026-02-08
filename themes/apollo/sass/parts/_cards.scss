@@ -1,3 +1,36 @@
+.projects-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.projects-header .page-header {
+  margin-bottom: 0;
+}
+
+.projects-sort {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.projects-sort a {
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 2px solid var(--primary-color);
+}
+
+.projects-sort a:hover,
+.projects-sort a.is-active {
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+}
+
 .cards {
   display: grid;
   grid-template-rows: auto;
@@ -7,17 +40,24 @@
 
 @media all and (min-width: 640px) {
   .cards {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media all and (min-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media all and (max-width: 640px) {
   .cards {
-    grid-template-columns: repeat(auto-fill, 1fr);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
 .card {
+  position: relative;
   min-height: 100px;
   background: var(--bg-1);
   border: 2px solid var(--border-color);
@@ -25,11 +65,30 @@
   overflow: hidden;
 }
 
+.card-meta {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--text-dim);
+  white-space: nowrap;
+  background-color: var(--bg-1);
+  border: 2px solid var(--border-color);
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0 0 0 12px;
+  padding: 0.2rem 0.45rem;
+  z-index: 0;
+}
+
 .card-info {
   padding: 0 24px 24px 24px;
 }
 
 .card-title {
+  position: relative;
+  z-index: 1;
   margin-top: 0.7em;
 }
 
