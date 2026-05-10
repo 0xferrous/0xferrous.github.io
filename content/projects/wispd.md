@@ -1,7 +1,7 @@
 +++
 title = "wispd"
 description = "A Wayland notification daemon implementing org.freedesktop.Notifications, with a layer-shell popup UI  and debug tooling."
-weight = 10
+date = "2026-03-11"
 
 [extra]
 link_to = "https://github.com/0xferrous/wispd"

@@ -1,7 +1,7 @@
 +++
 title = "my-nix"
 description = "No description"
-weight = 2
+date = "2026-05-09"
 
 [extra]
 link_to = "https://github.com/0xferrous/my-nix"

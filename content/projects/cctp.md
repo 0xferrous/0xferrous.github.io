@@ -1,7 +1,7 @@
 +++
 title = "cctp"
 description = "CLI for Circle CCTP transfers with EVM burn, claim, bridge, attestation,  and re-attestation support."
-weight = 1
+date = "2026-05-09"
 
 [extra]
 link_to = "https://github.com/0xferrous/cctp"

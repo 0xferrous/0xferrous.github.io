@@ -90,6 +90,39 @@
   position: relative;
   z-index: 1;
   margin-top: 0.7em;
+  line-height: 1;
+}
+
+.card-title::before {
+  content: none;
+}
+
+.card-title .card-repo-link {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1;
+  margin-right: 0.25rem;
+  border-bottom: unset;
+}
+
+.card-title .card-repo-link:hover {
+  background-color: var(--primary-color);
+}
+
+.card-title > a:last-child {
+  display: inline;
+}
+
+.card-repo-icon {
+  width: 0.95em;
+  height: 0.95em;
+  display: block;
+  border: unset;
+}
+
+:root.dark .card-repo-icon {
+  filter: invert(1);
 }
 
 .card-image {

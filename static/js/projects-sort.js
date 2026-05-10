@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sort = new URLSearchParams(window.location.search).get("sort");
+  const sort = new URLSearchParams(window.location.search).get("sort") || "updated";
   if (sort !== "name" && sort !== "updated") return;
 
   const activeLink = document.querySelector(`.projects-sort a[href$="sort=${sort}"]`);

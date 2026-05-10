@@ -1,7 +1,7 @@
 +++
 title = "dbuz"
 description = "Terminal UI for exploring, debugging, and interacting with D-Bus services."
-weight = 3
+date = "2026-05-07"
 
 [extra]
 link_to = "https://github.com/0xferrous/dbuz"

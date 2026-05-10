@@ -1,7 +1,7 @@
 +++
 title = "ghmd"
 description = "GitHub-flavored Markdown to HTML renderer with TOC, syntax highlighting, Mermaid, and footnotes."
-weight = 5
+date = "2026-05-03"
 
 [extra]
 link_to = "https://github.com/0xferrous/ghmd"

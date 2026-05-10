@@ -1,7 +1,7 @@
 +++
 title = "trace"
 description = "Interactive traces for foundry"
-weight = 6
+date = "2026-04-30"
 
 [extra]
 link_to = "https://github.com/0xferrous/trace"

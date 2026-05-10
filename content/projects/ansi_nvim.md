@@ -1,7 +1,7 @@
 +++
 title = "ansi.nvim"
 description = "A Neovim plugin that renders ANSI color escape codes as actual colors in buffers using concealer."
-weight = 7
+date = "2026-04-26"
 
 [extra]
 link_to = "https://github.com/0xferrous/ansi.nvim"

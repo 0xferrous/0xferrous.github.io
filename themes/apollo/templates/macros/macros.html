@@ -242,10 +242,15 @@
                 <div class="card-info">
                     <h1 class="card-title">
                         {% if page.extra.link_to %}
-                            <a href={{ page.extra.link_to }}>{{ page.title }}</a>
-                        {% else %}
-                            <a href={{ page.permalink | safe }}>{{ page.title }}</a>
-                        {% endif %}
+                            <a class="card-repo-link"
+                               href={{ page.extra.link_to }}
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <img class="card-repo-icon"
+                                     src="{{ get_url(path="icons/social/github.svg") }}"
+                                     alt="GitHub" />
+                            </a>
+                        {% endif %}<a href={{ page.permalink | safe }}>{{ page.title }}</a>
                     </h1>
 
                     <div class="card-description">

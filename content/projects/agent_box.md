@@ -1,7 +1,7 @@
 +++
 title = "agent-box"
 description = "Sandboxed containers for AI coding agents with disposable Git/Jujutsu workspaces"
-weight = 4
+date = "2026-05-04"
 
 [extra]
 link_to = "https://github.com/0xferrous/agent-box"

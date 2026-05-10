@@ -1,7 +1,7 @@
 +++
 title = "eth.nvim"
 description = "A Neovim plugin for navigating Ethereum addresses and transaction hashes to various block explorers."
-weight = 11
+date = "2025-10-11"
 
 [extra]
 link_to = "https://github.com/0xferrous/eth.nvim"

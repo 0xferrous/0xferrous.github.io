@@ -1,7 +1,7 @@
 +++
 title = "frcat"
 description = "Inspect Frame signer files and extract keys from local data"
-weight = 8
+date = "2026-04-11"
 
 [extra]
 link_to = "https://github.com/0xferrous/frcat"

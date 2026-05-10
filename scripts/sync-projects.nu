@@ -24,7 +24,7 @@ def repo_name [link_to: string] {
   $link_to | split row "/" | last
 }
 
-def build_content [front_matter: record, body: string, repo: record, weight: int] {
+def build_content [front_matter: record, body: string, repo: record] {
   let updated_date = ($repo.updatedAt | str substring 0..9)
   let extra = (
     $front_matter.extra
@@ -41,7 +41,7 @@ def build_content [front_matter: record, body: string, repo: record, weight: int
     "+++"
     $"title = (quote ($front_matter.title | default $repo.name))"
     $"description = (quote $description)"
-    $"weight = ($weight)"
+    $"date = (quote $updated_date)"
     ""
     "[extra]"
     ...(
@@ -91,7 +91,7 @@ export def main [projects_dir: path, repositories_url: string = "https://raw.git
 
   for entry in ($projects | enumerate) {
     let item = $entry.item
-    let content = (build_content $item.front_matter $item.body $item.repo ($entry.index + 1))
+    let content = (build_content $item.front_matter $item.body $item.repo)
     $content | save -f $item.path
   }
 }
