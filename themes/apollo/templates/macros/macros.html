@@ -125,6 +125,10 @@
                         :: Updated on <time>{{ page.updated | date(format="%Y-%m-%d") }}</time>
                     {% endif %}
 
+                    {% if page.extra.populate_with_readme | default(value=false) %}
+                        :: <span class="readme-label">README</span>
+                    {% endif %}
+
                     {% if page.extra.read_time %}:: <time>{{ page.reading_time }}</time> Min Read{% endif %}
 
                     {% if page.word_count %}:: {{ page.word_count }} Words{% endif %}

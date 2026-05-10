@@ -24,6 +24,7 @@ keywords = ["development", "programming", "coding", "tools", "tech", "software"]
 og_image = "/images/og-image.png"
 twitter_username = "0xferrous"
 theme = "auto"
+toc = true
 stylesheets = [
     "recursive-font.css"
 ]

@@ -23,6 +23,10 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v16
 
+      - name: Test project sync helpers
+        run: |
+          nix shell nixpkgs#nushell -c nu -c 'source scripts/sync-projects.nu; source scripts/sync-projects.test.nu; main'
+
       - name: Sync project cards
         run: |
           ./scripts/sync-projects.nu content/projects

@@ -4,18 +4,75 @@ description = "Sandboxed containers for AI coding agents with disposable Git/Juj
 date = "2026-05-04"
 
 [extra]
+populate_with_readme = true
 link_to = "https://github.com/0xferrous/agent-box"
 updated_at = "2026-05-04"
 +++
 
-A Rust CLI tool that manages isolated container environments for AI coding agents. Combines Git/Jujutsu workspace management with Podman/Docker containers, giving agents unrestricted access inside disposable sandboxes.
+# Agent-box
 
-**Features:**
-- Automatic workspace creation (Jujutsu or Git worktrees)
-- Layered configuration with profiles and inheritance
-- Smart mount handling with symlink resolution and glob patterns
-- Context injection for AI agents via `/tmp/context`
-- GPG agent forwarding for commit signing
-- Nix store sharing via daemon socket
+Agent-box provides sandboxed development workflows for coding agents, plus optional Portal-based host capability mediation.
 
-Built for developers who want the power of autonomous AI agents without the risk of running `--dangerously-skip-permissions` on their host machine. Spawn containers, let agents experiment freely, review changes, and discard or merge - all without touching your source repository.
+> [!NOTE]
+> This repository now uses the mdBook docs site as the primary documentation source.
+
+## Demo
+
+![Agent-box demo](https://github.com/user-attachments/assets/c7aaaf16-fbcc-4669-97f3-33c423f2ff90)
+
+## Documentation
+
+Read the docs in one of these ways:
+
+- Build locally: `nix develop --command 'mdbook build docs'`
+- Open generated site: `docs/book/index.html`
+
+Entry points:
+
+- [**Start here**](https://github.com/0xferrous/agent-box/blob/main/docs/src/index.md)
+- [**Choose your path**](https://github.com/0xferrous/agent-box/blob/main/docs/src/choose-your-path.md)
+- [**Tutorials**](https://github.com/0xferrous/agent-box/blob/main/docs/src/tutorials/index.md)
+- [**How-to guides**](https://github.com/0xferrous/agent-box/blob/main/docs/src/how-to/index.md)
+- [**Reference**](https://github.com/0xferrous/agent-box/blob/main/docs/src/reference/index.md)
+- [**Explanation + ADRs**](https://github.com/0xferrous/agent-box/blob/main/docs/src/explanation/index.md)
+
+## Table of Contents
+
+- Demo
+- Documentation
+- Quick links
+- Development
+
+## Quick links
+
+- [Agent-box first run](https://github.com/0xferrous/agent-box/blob/main/docs/src/tutorials/agent-box/first-run.md)
+- [Agent-box profiles guide](https://github.com/0xferrous/agent-box/blob/main/docs/src/how-to/agent-box/use-profiles.md)
+- [Portal standalone first run](https://github.com/0xferrous/agent-box/blob/main/docs/src/tutorials/portal/first-run-standalone.md)
+- [Connect Portal to Agent-box](https://github.com/0xferrous/agent-box/blob/main/docs/src/tutorials/portal-with-agent-box/connect-portal-to-agent-box.md)
+- [Agent-box config reference](https://github.com/0xferrous/agent-box/blob/main/docs/src/reference/agent-box/config.md)
+- [Agent-box requirements](https://github.com/0xferrous/agent-box/blob/main/docs/src/reference/agent-box/requirements.md)
+- [Agent-box workflow internals](https://github.com/0xferrous/agent-box/blob/main/docs/src/explanation/architecture/agent-box-workflow.md)
+- [Agent-box CLI reference (generated)](https://github.com/0xferrous/agent-box/blob/main/docs/src/reference/agent-box/cli.md)
+- [Portal CLI reference (generated)](https://github.com/0xferrous/agent-box/blob/main/docs/src/reference/portal/cli.md)
+
+## Related projects
+
+- [agent-images](https://github.com/nothingnesses/agent-images) - Reproducible OCI container images for AI coding agents, built with Nix. Consumes agent packages from [llm-agents.nix](https://github.com/numtide/llm-agents.nix) and produces images usable with agent-box or standalone Podman/Docker.
+
+## Development
+
+From the repo root, run checks in the flake devshell:
+
+The flake also preconfigures the `0xferrous` Cachix cache via `nixConfig`, and CI pushes the `ab`, `wrappers`, and `portal` flake outputs there.
+
+```bash
+nix develop --command cargo fmt --all
+nix develop --command cargo check --workspace
+nix develop --command cargo clippy --workspace --all-targets -- -D warnings
+```
+
+Regenerate CLI reference pages:
+
+```bash
+nix develop --command nix-shell -p nushell --run 'nu docs/scripts/generate-cli-reference.nu'
+```

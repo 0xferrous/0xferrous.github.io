@@ -2,7 +2,8 @@
   color: var(--primary-color);
 }
 
-.draft-label {
+.draft-label,
+.readme-label {
   color: var(--hover-color);
   text-decoration: none;
   padding: 2px 4px;
