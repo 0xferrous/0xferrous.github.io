@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-05-24"
+date = "2026-05-25"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-05-24"
+updated_at = "2026-05-25"
 +++
 
 # my-nix
@@ -16,6 +16,7 @@ Public Nix files extracted from my larger setup.
 Current public building blocks include:
 
 - [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md): portable Neovim wrapper config exposed via this repo's flake `packages` and `apps`
+- `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme
 - [`lib/mkAgentBoxImage.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentBoxImage.nix): image builder for environments intended to run inside [`agent-box`](https://github.com/0xferrous/agent-box), exposed via this repo's flake as `lib.mkAgentBoxImage`
 - `homeManagerModules.vcs`: generic reusable Home Manager VCS identity projection module
 - `homeManagerModules.direnv`: reusable Home Manager direnv module with configurable Poetry/devenv stdlib helpers
@@ -42,6 +43,8 @@ Root flake exports them separately:
 - `nixosConfigs.fr` exports `config/fr/nixos.nix`
 
 Public `fr` config should be gated behind `fr.public.enable` and use `lib.mkDefault` for values that a private repo may override. Generic modules should expose narrowly-scoped options and let users configure upstream Home Manager/NixOS modules directly where possible.
+
+Current public `fr` Home Manager defaults enable the reusable `direnv` module with devenv and Poetry stdlib helpers, plus the reusable `termfilechooser` module with `superfile` running inside `kitty`.
 
 ## Public `fr` config pattern
 
