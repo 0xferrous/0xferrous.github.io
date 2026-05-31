@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-05-27"
+date = "2026-05-31"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-05-27"
+updated_at = "2026-05-31"
 +++
 
 # my-nix
@@ -18,6 +18,9 @@ Current public building blocks include:
 - [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md): portable Neovim wrapper config exposed via this repo's flake `packages` and `apps`
 - `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme
 - [`lib/mkAgentBoxImage.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentBoxImage.nix): image builder for environments intended to run inside [`agent-box`](https://github.com/0xferrous/agent-box), exposed via this repo's flake as `lib.mkAgentBoxImage`
+- [`lib/mkAgentspaceVmSystems.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentspaceVmSystems.nix): helper for turning agentspace VM configs into evaluated NixOS system attrsets, exposed as `lib.mkAgentspaceVmSystems`
+- [`lib/mkAgentspaceVmApps.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentspaceVmApps.nix): helper for turning evaluated agentspace systems into flake `apps` attrsets, exposed as `lib.mkAgentspaceVmApps`
+- `nixosModules.virtiofsdNixStore`: socket-activated read-only `/nix/store` sharing via `virtiofsd`
 - `homeManagerModules.vcs`: generic reusable Home Manager VCS identity projection module
 - `homeManagerModules.direnv`: reusable Home Manager direnv module with configurable Poetry/devenv stdlib helpers
 - `homeManagerModules.termfilechooser`: reusable Home Manager module for `xdg-desktop-portal-termfilechooser`
