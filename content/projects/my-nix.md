@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-06-01"
+date = "2026-06-07"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-06-01"
+updated_at = "2026-06-07"
 +++
 
 # my-nix

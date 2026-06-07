@@ -1,12 +1,12 @@
 +++
 title = "ethx"
 description = "Experimental Ethereum CLI built on Foundry and Alloy, with cast send-like transaction sending and extensible smart-account support."
-date = "2026-03-31"
+date = "2026-06-07"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/ethx"
-updated_at = "2026-03-31"
+updated_at = "2026-06-07"
 +++
 
 # ethx
