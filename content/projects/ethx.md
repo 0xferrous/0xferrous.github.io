@@ -1,12 +1,12 @@
 +++
 title = "ethx"
 description = "Experimental Ethereum CLI built on Foundry and Alloy, with cast send-like transaction sending and extensible smart-account support."
-date = "2026-06-07"
+date = "2026-06-17"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/ethx"
-updated_at = "2026-06-07"
+updated_at = "2026-06-17"
 +++
 
 # ethx
@@ -20,6 +20,11 @@ Right now the main implemented command is:
 
 It also supports wrapping calls through a smart-account encoder, currently:
 - `safe`
+
+Additional Safe convenience commands include:
+- `ethx safe execute-deployment` — execute CALL transactions from a Foundry broadcast JSON through a Safe
+- `ethx safe queue` — encode one call and queue it in the Safe Transaction Service
+- `ethx safe queue-deployment` — sign and queue Foundry broadcast JSON transactions in the Safe Transaction Service
 
 ## Table of contents
 
@@ -55,6 +60,58 @@ ethx send \
   --create \
   0x6080...
 ```
+
+### Execute a Foundry broadcast JSON through a Safe
+
+```bash
+ethx safe execute-deployment \
+  --rpc-url https://rpc.example \
+  --private-key <OWNER_KEY> \
+  --safe 0xSafe \
+  broadcast/MyScript.s.sol/1/run-latest.json
+```
+
+If the JSON contains one CALL transaction, `ethx` executes it directly through the Safe. If it
+contains multiple CALL transactions, `ethx` batches them with Safe MultiSend and executes the
+MultiSend call via `DELEGATECALL`. Contract deployment transactions (`CREATE`/`CREATE2`) are not
+supported by this command.
+
+Use `--multi-send <ADDRESS>` to override the default canonical MultiSend address.
+
+### Queue a call in the Safe API
+
+For multisig Safes, encode a call and queue it offchain instead of broadcasting immediately:
+
+```bash
+ethx safe queue \
+  --rpc-url https://rpc.example \
+  --private-key <OWNER_KEY> \
+  --safe 0xSafe \
+  0xInnerTarget \
+  "transfer(address,uint256)" \
+  0xRecipient \
+  1000000000000000000
+```
+
+Use `--value <VALUE>` to attach ETH value to the inner Safe transaction.
+
+### Queue a Foundry broadcast JSON in the Safe API
+
+For multisig Safes, queue the Safe transaction offchain instead of broadcasting immediately:
+
+```bash
+ethx safe queue-deployment \
+  --rpc-url https://rpc.example \
+  --private-key <OWNER_KEY> \
+  --safe 0xSafe \
+  broadcast/MyScript.s.sol/1/run-latest.json
+```
+
+`ethx` asks the Safe Transaction Service for trusted pending transactions and queues at the next
+available nonce unless `--safe-nonce` is provided. It signs the Safe transaction hash with the local
+owner key and submits the proposal to the Safe Transaction Service. `--safe-api-url <URL>` can
+override the default API URL; defaults are known for common Safe-supported chains such as Ethereum, Sepolia, Optimism, Arbitrum, Base,
+Polygon, Gnosis Chain, BNB Chain, Avalanche, zkSync Era, Linea, Celo, Scroll, Sonic, and Unichain.
 
 ### Send through a Safe
 
@@ -132,6 +189,7 @@ The intent is that other smart-account/account-abstraction styles can be added l
 This is an experiment, not a polished replacement for `cast`.
 
 Implemented today:
+- Foundry broadcast JSON CALL execution through Safe, with MultiSend batching for multiple calls
 - Foundry-style function signature + args parsing via `foundry_cli::utils::parse_function_args`
 - Foundry wallet resolution via `foundry-wallets`
 - regular call sending
@@ -168,6 +226,15 @@ cargo build
 ```
 
 ## Run
+
+With Nix flakes:
+
+```bash
+nix run . -- --help
+nix run . -- send --help
+```
+
+With Cargo:
 
 ```bash
 cargo run -- --help
