@@ -1,12 +1,12 @@
 +++
 title = "trace"
 description = "Interactive traces for foundry"
-date = "2026-04-30"
+date = "2026-07-10"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/trace"
-updated_at = "2026-04-30"
+updated_at = "2026-07-10"
 +++
 
 # trace - foundry trace explorer
