@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-07-29"
+date = "2026-07-31"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-07-29"
+updated_at = "2026-07-31"
 +++
 
 # my-nix
@@ -19,6 +19,7 @@ Current public building blocks include:
 - `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme
 - `packages.<system>.install-bin`: helper that symlinks a path into `~/bin` using the path basename
 - [`lib/mkAgentBoxImage.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentBoxImage.nix): image builder for environments intended to run inside [`agent-box`](https://github.com/0xferrous/agent-box), exposed via this repo's flake as `lib.mkAgentBoxImage`
+- [`docs/pending-changes.md`](https://github.com/0xferrous/my-nix/blob/main/docs/pending-changes.md): rolling WIP / pending-change log
 - `nixosModules.virtiofsdNixStore`: socket-activated read-only `/nix/store` sharing via `virtiofsd`
 - `homeManagerModules.vcs`: generic reusable Home Manager VCS identity projection module
 - `homeManagerModules.direnv`: reusable Home Manager direnv module with configurable Poetry/devenv stdlib helpers
