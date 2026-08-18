@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-08-16"
+date = "2026-08-17"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-08-16"
+updated_at = "2026-08-17"
 +++
 
 # my-nix
@@ -92,7 +92,6 @@ Packages provided by the overlay:
 | package | description |
 | --- | --- |
 | `pi`, `pi-acp` | `pi` (llm-agents CLI) wrapped with default CLI args plus bundled extensions/theme and AI tooling; `pi-acp` is the Agent Client Protocol adapter |
-| `fzf` | `fzf` wrapper fixing `--nushell` output for nushell |
 | `herdr` | agent multiplexer that lives in your terminal |
 | `git-hunk`, `jj-hunk` | non-interactive hunk staging for `git` and `jj` |
 | `takopi` | Telegram bridge for Codex, Claude Code, and other agent CLIs |
@@ -115,7 +114,7 @@ Packages provided by the overlay:
 | `plannotator-pi-extension` | interactive plan and code review extension for Pi |
 | `frsNvimPackage` | the [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md) package |
 
-`packages.<system>.*` exposes all of the above except the overlay-only entries `fzf`, `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
+`packages.<system>.*` exposes all of the above except the overlay-only entries `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
 
 ## Public `fr` config pattern
 
