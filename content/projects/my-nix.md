@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-08-30"
+date = "2026-08-31"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-08-30"
+updated_at = "2026-08-31"
 +++
 
 # my-nix
@@ -97,6 +97,7 @@ Packages provided by the overlay:
 | `git-hunk`, `jj-hunk` | non-interactive hunk staging for `git` and `jj` |
 | `takopi` | Telegram bridge for Codex, Claude Code, and other agent CLIs |
 | `terminal-control` | control, inspect, test, and capture real terminal applications for agents and TUI review |
+| `iroh-ssh` | SSH to machines behind NATs and firewalls using Iroh, without port forwarding or VPN setup |
 | `prime-agent` | self-improving RLM agent for coding workflows and long-running autonomous tasks |
 | `oh-my-pi` | AI coding agent for the terminal |
 | `qwen3-server` | Qwen3-Coder 30B-A3B served directly by llama.cpp (Vulkan backend), plus `qwen3-get-model`/`qwen3-bench` helpers |
