@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-08-31"
+date = "2026-09-01"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-08-31"
+updated_at = "2026-09-01"
 +++
 
 # my-nix
@@ -96,8 +96,11 @@ Packages provided by the overlay:
 | `dev-essentials` | combined package exposing the shared development essentials on one `PATH` |
 | `git-hunk`, `jj-hunk` | non-interactive hunk staging for `git` and `jj` |
 | `takopi` | Telegram bridge for Codex, Claude Code, and other agent CLIs |
+| `tron-wallet-cli` | agent-first TRON command-line wallet (TypeScript), built from source |
+| `tron-wallet-cli-java` | original interactive TRON wallet REPL (Java, Gradle fat jar) |
 | `terminal-control` | control, inspect, test, and capture real terminal applications for agents and TUI review |
 | `iroh-ssh` | SSH to machines behind NATs and firewalls using Iroh, without port forwarding or VPN setup |
+| `ssh-tmp` | SSH with an ephemeral Ed25519 identity, empty configuration, and no agent identities |
 | `prime-agent` | self-improving RLM agent for coding workflows and long-running autonomous tasks |
 | `oh-my-pi` | AI coding agent for the terminal |
 | `qwen3-server` | Qwen3-Coder 30B-A3B served directly by llama.cpp (Vulkan backend), plus `qwen3-get-model`/`qwen3-bench` helpers |
