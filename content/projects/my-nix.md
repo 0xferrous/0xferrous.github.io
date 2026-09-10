@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-09-08"
+date = "2026-09-09"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-09-08"
+updated_at = "2026-09-09"
 +++
 
 # my-nix
@@ -58,7 +58,7 @@ Root flake exports them separately:
 
 Public `fr` config should be gated behind `fr.public.enable` and use `lib.mkDefault` for values that a private repo may override. Generic modules should expose narrowly-scoped options and let users configure upstream Home Manager/NixOS modules directly where possible.
 
-Current public `fr` Home Manager defaults enable the reusable `direnv` module with devenv and Poetry stdlib helpers, plus the reusable `termfilechooser` module with `superfile` running inside `kitty`.
+Current public `fr` Home Manager defaults enable the reusable `direnv` module with devenv and Poetry stdlib helpers, plus the reusable `termfilechooser` module with `yazi` running inside `kitty`.
 
 ## Overlay & packages
 
@@ -108,9 +108,11 @@ Packages provided by the overlay:
 | `iron-proxy` | MITM egress proxy with DNS server, secret injection, and audit logging |
 | `obscura` | headless browser engine in Rust: V8, real DOM, CDP, stealth |
 | `codex-desktop` | ChatGPT/Codex Linux desktop app (preview): closed-source Electron bundle of the Apache-2.0 `codex` CLI; ships as `.deb` from OpenAI's apt repository (versioned pool URL, pinned via `pkgs/codex-desktop-source.nix`), unpacked and patched here (unfree, `--no-sandbox`, Wayland-aware wrapper with X11 fallback) |
+| `bb` | bb desktop package with `bb-desktop`, `bb`, and `bb-app` entrypoints; runs the published Linux AppImage through Nix with deterministic Codex/Pi provider paths and Electron-compatible server runtime |
 | `hints` | click, scroll, and drag with your keyboard |
 | `opensrc` | fetch and cache source code for packages and repos |
-| `flake-utils` | synchronize selected flake input locks across local flakes |
+| `flake-utils` | synchronize selected flake input locks across local flakes with `sync` and `intersection` subcommands; use `sync --update` to refresh the canonical flake first |
+| `gruvbox-gtk-theme` | GTK 3/4 and icon theme based on the Gruvbox color palette, packaged without the obsolete GTK 2 Murrine dependency |
 | `google-authenticator-transfer-decode` | decode Google Authenticator transfer QR payloads to standard `otpauth` URIs |
 | `fr-frame-summon` | summon the Frame extension via local JSON-RPC WebSocket |
 | `fr-kbd-backlight` | Nushell helper for managing keyboard backlight brightness |
