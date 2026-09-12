@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-09-09"
+date = "2026-09-12"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-09-09"
+updated_at = "2026-09-12"
 +++
 
 # my-nix
@@ -27,7 +27,7 @@ Current public building blocks include:
 - `overlays.default`: overlay exposing the reusable packages under [`pkgs/`](https://github.com/0xferrous/my-nix/blob/main/pkgs/) under their plain names (see Overlay & packages)
 - `packages.<system>.*`: the same packages as flake outputs, no overlay required
 - [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md): portable Neovim wrapper config exposed via this repo's flake `packages` and `apps`
-- `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme
+- `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme, and a seeded `ctrl+backspace` kill-word keybinding (merged idempotently into `~/.pi/agent/keybindings.json`)
 - `packages.<system>.install-bin`: helper that symlinks a path into `~/bin` using the path basename
 - [`lib/mkAgentBoxImage.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentBoxImage.nix): image builder for environments intended to run inside [`agent-box`](https://github.com/0xferrous/agent-box), exposed via this repo's flake as `lib.mkAgentBoxImage`
 - [`docs/pending-changes.md`](https://github.com/0xferrous/my-nix/blob/main/docs/pending-changes.md): rolling WIP / pending-change log
@@ -109,6 +109,8 @@ Packages provided by the overlay:
 | `obscura` | headless browser engine in Rust: V8, real DOM, CDP, stealth |
 | `codex-desktop` | ChatGPT/Codex Linux desktop app (preview): closed-source Electron bundle of the Apache-2.0 `codex` CLI; ships as `.deb` from OpenAI's apt repository (versioned pool URL, pinned via `pkgs/codex-desktop-source.nix`), unpacked and patched here (unfree, `--no-sandbox`, Wayland-aware wrapper with X11 fallback) |
 | `bb` | bb desktop package with `bb-desktop`, `bb`, and `bb-app` entrypoints; runs the published Linux AppImage through Nix with deterministic Codex/Pi provider paths and Electron-compatible server runtime |
+| `bb-android-x86_64` / `bb-android-arm64-v8a` | bb Android APK built for x86_64 Waydroid or ARM64 phones; `bb-android` aliases the x86_64 build |
+| `tolaria` | Tolaria markdown knowledge-base desktop app (Tauri 2); ships as `.deb` from GitHub releases (pinned via `pkgs/tolaria/source-lock.nix`), unpacked and wrapped here with `nodejs` on PATH for the bundled MCP server; bump with `pkgs/tolaria/update.sh` |
 | `hints` | click, scroll, and drag with your keyboard |
 | `opensrc` | fetch and cache source code for packages and repos |
 | `flake-utils` | synchronize selected flake input locks across local flakes with `sync` and `intersection` subcommands; use `sync --update` to refresh the canonical flake first |
