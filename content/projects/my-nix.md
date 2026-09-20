@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-09-13"
+date = "2026-09-20"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-09-13"
+updated_at = "2026-09-20"
 +++
 
 # my-nix
@@ -67,7 +67,7 @@ Current public `fr` Home Manager defaults enable the reusable `direnv` module wi
 - `overlays.default` — apply the overlay to get every package under its plain name in `pkgs`
 - `packages.<system>.*` — the same packages as flake outputs, without applying the overlay
 
-The overlay is built from this flake's inputs (e.g. `pi` wraps the `llm-agents` CLI, `herdr` comes from `llm-agents`, `hints` pulls in a pinned source), so consume it via the flake output rather than copying the file standalone.
+The overlay is built from this flake's inputs (e.g. `pi` wraps the `llm-agents` CLI, `herdr` comes from `llm-agents`, and `hints` pulls in a pinned source), so consume it via the flake output rather than copying the file standalone. It also builds Nushell from a pinned commit on the upstream `main` branch.
 
 Example — NixOS module:
 
@@ -123,6 +123,9 @@ Packages provided by the overlay:
 | `plannotator-pi-extension` | interactive plan and code review extension for Pi |
 | `frsNvimPackage` | the [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md) package |
 
+The default overlay currently builds `pkgs.nushell` from the upstream `main` branch;
+the temporary source override is documented in [`pkgs/overlay.nix`](https://github.com/0xferrous/my-nix/blob/main/pkgs/overlay.nix).
+
 `abwrap` starts with a clean environment and forwards only terminal/locale metadata by default. Use `--env NAME` for additional variables. A directly selected `pi`, `codex`, or `opencode` entrypoint automatically receives only its own state directory; use `--tool-state TOOL` when launching a tool later from the default Nushell. It also blocks `TIOCSTI` terminal injection and nested user namespaces while retaining native terminal resizing. See the [abwrap documentation](https://github.com/0xferrous/my-nix/blob/main/pkgs/abwrap/README.md) for usage and security details.
 
 `packages.<system>.*` exposes all of the above except the overlay-only entries `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
@@ -146,6 +149,8 @@ Current NixOS baseline:
   - `port = 9000`
   - `theme = "gruvbox"`
   - `rootDir = /home/<user>` derived from `fr.public.user` unless `fr.public.homeDir` overrides it
+- imports and enables [`nixpkgs-multiverse`](https://github.com/fzakaria/nixpkgs-multiverse)
+  for pinning package versions with `multiverse.pins` in either NixOS or Home Manager
 
 Example private usage:
 
@@ -189,3 +194,10 @@ Notes:
 - ghmd service itself comes from upstream `ghmd` flake NixOS module
 - default ghmd content root is `/home/<fr.public.user>` unless `fr.public.homeDir` or `services.ghmd.rootDir` overrides it
 - default public URLs are `http://ghmd.localhost` and `http://rustdoc.localhost`
+- package pins can be added in the consuming configuration, for example:
+
+  ```nix
+  {
+    multiverse.pins.ripgrep = "13.0.0";
+  }
+  ```
