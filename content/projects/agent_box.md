@@ -1,12 +1,12 @@
 +++
 title = "agent-box"
 description = "Sandboxed containers for AI coding agents with disposable Git/Jujutsu workspaces"
-date = "2026-08-14"
+date = "2026-09-22"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/agent-box"
-updated_at = "2026-08-14"
+updated_at = "2026-09-22"
 +++
 
 # Agent-box
