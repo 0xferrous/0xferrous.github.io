@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-10-04"
+date = "2026-10-09"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-10-04"
+updated_at = "2026-10-09"
 +++
 
 # my-nix
@@ -29,7 +29,6 @@ Current public building blocks include:
 - [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md): portable Neovim wrapper config exposed via this repo's flake `packages` and `apps`
 - `packages.<system>.pi`: `pi` wrapped with default CLI args plus bundled extensions/theme, and a seeded `ctrl+backspace` kill-word keybinding (merged idempotently into `~/.pi/agent/keybindings.json`)
 - `packages.<system>.install-bin`: helper that symlinks a path into `~/bin` using the path basename
-- [`lib/mkAgentBoxImage.nix`](https://github.com/0xferrous/my-nix/blob/main/lib/mkAgentBoxImage.nix): image builder for environments intended to run inside [`agent-box`](https://github.com/0xferrous/agent-box), exposed via this repo's flake as `lib.mkAgentBoxImage`
 - [`docs/pending-changes.md`](https://github.com/0xferrous/my-nix/blob/main/docs/pending-changes.md): rolling WIP / pending-change log
 - `nixosModules.virtiofsdNixStore`: socket-activated read-only `/nix/store` sharing via `virtiofsd`
 - `homeManagerModules.vcs`: generic reusable Home Manager VCS identity projection module
@@ -67,7 +66,7 @@ Current public `fr` Home Manager defaults enable the reusable `direnv` module wi
 - `overlays.default` — apply the overlay to get every package under its plain name in `pkgs`
 - `packages.<system>.*` — the same packages as flake outputs, without applying the overlay
 
-The overlay is built from this flake's inputs (e.g. `pi` wraps the `llm-agents` CLI, `herdr` comes from `llm-agents`, and `hints` pulls in a pinned source), so consume it via the flake output rather than copying the file standalone. It also builds Nushell from a pinned commit on the upstream `main` branch.
+The overlay is built from this flake's inputs (e.g. `pi` wraps the `llm-agents` CLI, `herdr` comes from `llm-agents`, and `hints` pulls in a pinned source), so consume it via the flake output rather than copying the file standalone.
 
 Example — NixOS module:
 
@@ -94,6 +93,7 @@ Packages provided by the overlay:
 | `pi`, `abwrap`, `pi-acp` | `pi` wraps the llm-agents CLI with bundled extensions/theme and AI tooling; `abwrap` launches Nushell—or a directly selected entrypoint such as `pi`, `codex`, or `opencode`—inside Bubblewrap with a per-invocation writable Nix local-overlay store; `pi-acp` is the Agent Client Protocol adapter |
 | `herdr` | agent multiplexer that lives in your terminal |
 | `dev-essentials` | combined package exposing the shared development essentials on one `PATH` |
+| `executor` | Executor integration service and CLI, packaged from the upstream Linux release |
 | `git-hunk`, `jj-hunk` | non-interactive hunk staging for `git` and `jj` |
 | `takopi` | Telegram bridge for Codex, Claude Code, and other agent CLIs |
 | `tron-wallet-cli` | agent-first TRON command-line wallet (TypeScript), built from source |
@@ -101,14 +101,15 @@ Packages provided by the overlay:
 | `terminal-control` | control, inspect, test, and capture real terminal applications for agents and TUI review |
 | `iroh-ssh` | SSH to machines behind NATs and firewalls using Iroh, without port forwarding or VPN setup |
 | `ssh-tmp` | SSH with an ephemeral Ed25519 identity, empty configuration, and no agent identities |
-| `prime-agent` | self-improving RLM agent for coding workflows and long-running autonomous tasks |
 | `oh-my-pi` | AI coding agent for the terminal |
-| `qwen3-server` | Qwen3-Coder 30B-A3B served directly by llama.cpp (Vulkan backend), plus `qwen3-get-model`/`qwen3-bench` helpers |
+| `microsandbox` / `msb` | Prebuilt microsandbox CLI and libkrunfw runtime from the upstream GitHub release (Linux x86_64 and aarch64) |
+| `llama-cpp-prism-rocm`, `llama-cpp-prism-vulkan` | PrismML's ROCm/HIP- and Vulkan-enabled llama.cpp fork for Ternary Bonsai GGUF models |
 | `ironclaw` | secure personal AI assistant |
 | `iron-proxy` | MITM egress proxy with DNS server, secret injection, and audit logging |
 | `obscura` | headless browser engine in Rust: V8, real DOM, CDP, stealth |
 | `codex-desktop` | ChatGPT/Codex Linux desktop app (preview): closed-source Electron bundle of the Apache-2.0 `codex` CLI; ships as `.deb` from OpenAI's apt repository (versioned pool URL, pinned via `pkgs/codex-desktop-source.nix`), unpacked and patched here (unfree, `--no-sandbox`, Wayland-aware wrapper with X11 fallback) |
 | `bb` | bb desktop package with `bb-desktop`, `bb`, and `bb-app` entrypoints; runs the published Linux AppImage through Nix with deterministic Codex/Pi provider paths and Electron-compatible server runtime |
+| `bb-connect` | CLI wrapper for launching bb against a remote server with an isolated named profile (`bb-connect --profile NAME URL`) |
 | `bb-android-x86_64` / `bb-android-arm64-v8a` | bb Android APK built for x86_64 Waydroid or ARM64 phones; `bb-android` aliases the x86_64 build |
 | `tolaria` | Tolaria markdown knowledge-base desktop app (Tauri 2); ships as `.deb` from GitHub releases (pinned via `pkgs/tolaria/source-lock.nix`), unpacked and wrapped here with `nodejs` on PATH for the bundled MCP server; bump with `pkgs/tolaria/update.sh` |
 | `hints` | click, scroll, and drag with your keyboard |
@@ -118,13 +119,11 @@ Packages provided by the overlay:
 | `google-authenticator-transfer-decode` | decode Google Authenticator transfer QR payloads to standard `otpauth` URIs |
 | `fr-frame-summon` | summon the Frame extension via local JSON-RPC WebSocket |
 | `fr-kbd-backlight` | Nushell helper for managing keyboard backlight brightness |
+| `waydroid-size` | Niri/Waydroid helper with height-fit and quarter-screen-width modes; reserves space for bars |
 | `install-bin` | symlink a binary into `~/bin` using the source path basename |
 | `ashWrappers` | guest-side wrappers for the Ash Portal |
 | `plannotator-pi-extension` | interactive plan and code review extension for Pi |
 | `frsNvimPackage` | the [`pkgs/frs-nvim`](https://github.com/0xferrous/my-nix/blob/main/pkgs/frs-nvim/README.md) package |
-
-The default overlay currently builds `pkgs.nushell` from the upstream `main` branch;
-the temporary source override is documented in [`pkgs/overlay.nix`](https://github.com/0xferrous/my-nix/blob/main/pkgs/overlay.nix).
 
 `abwrap` starts with a clean environment and forwards only terminal/locale metadata by default. Use `--env NAME` for additional variables. A directly selected `pi`, `codex`, or `opencode` entrypoint automatically receives only its own state directory; use `--tool-state TOOL` when launching a tool later from the default Nushell. It also blocks `TIOCSTI` terminal injection and nested user namespaces while retaining native terminal resizing. See the [abwrap documentation](https://github.com/0xferrous/my-nix/blob/main/pkgs/abwrap/README.md) for usage and security details.
 
