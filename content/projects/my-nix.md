@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-10-09"
+date = "2026-10-15"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-10-09"
+updated_at = "2026-10-15"
 +++
 
 # my-nix
@@ -34,6 +34,7 @@ Current public building blocks include:
 - `homeManagerModules.vcs`: generic reusable Home Manager VCS identity projection module
 - `homeManagerModules.direnv`: reusable Home Manager direnv module with configurable Poetry/devenv stdlib helpers
 - `homeManagerModules.termfilechooser`: reusable Home Manager module for `xdg-desktop-portal-termfilechooser`
+- `homeManagerModules.bb-app`: reusable Home Manager service for the BB server, with configurable package, bind host, and optional Tailscale URL discovery
 - `homeConfigs.fr`: public `fr` Home Manager config intended to be imported from a private configuration
 - `nixosConfigs.fr`: public `fr` NixOS config intended to be imported from a private configuration
 
@@ -51,6 +52,7 @@ Root flake exports them separately:
 - `homeManagerModules.vcs` exports `modules/home/vcs.nix`
 - `homeManagerModules.direnv` exports `modules/home/programs/direnv.nix`
 - `homeManagerModules.termfilechooser` exports `modules/home/termfilechooser.nix`
+- `homeManagerModules.bb-app` exports `modules/home/bb-app.nix`
 - `nixosModules.k3sMicrovm` exports `modules/nixos/k3s-microvm.nix`
 - `homeConfigs.fr` exports `config/fr/home.nix`
 - `nixosConfigs.fr` exports `config/fr/nixos.nix`
@@ -91,6 +93,7 @@ Packages provided by the overlay:
 | package | description |
 | --- | --- |
 | `pi`, `abwrap`, `pi-acp` | `pi` wraps the llm-agents CLI with bundled extensions/theme and AI tooling; `abwrap` launches Nushell—or a directly selected entrypoint such as `pi`, `codex`, or `opencode`—inside Bubblewrap with a per-invocation writable Nix local-overlay store; `pi-acp` is the Agent Client Protocol adapter |
+| `activitywatch` | desktop time tracking with activity and window watchers, built from upstream v0.14.1 |
 | `herdr` | agent multiplexer that lives in your terminal |
 | `dev-essentials` | combined package exposing the shared development essentials on one `PATH` |
 | `executor` | Executor integration service and CLI, packaged from the upstream Linux release |
