@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-10-25"
+date = "2026-10-29"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-10-25"
+updated_at = "2026-10-29"
 +++
 
 # my-nix
@@ -114,7 +114,11 @@ Packages provided by the overlay:
 | `bb` | bb desktop package with `bb-desktop`, `bb`, and `bb-app` entrypoints; runs the published Linux AppImage through Nix with deterministic Codex/Pi provider paths and Electron-compatible server runtime |
 | `bb-connect` | CLI wrapper for launching bb against a remote server with an isolated named profile (`bb-connect --profile NAME URL`) |
 | `bb-android-x86_64` / `bb-android-arm64-v8a` | bb Android APK built for x86_64 Waydroid or ARM64 phones; `bb-android` aliases the x86_64 build |
-| `tolaria` | Tolaria markdown knowledge-base desktop app (Tauri 2); ships as `.deb` from GitHub releases (pinned via `pkgs/tolaria/source-lock.nix`), unpacked and wrapped here with `nodejs` on PATH for the bundled MCP server; bump with `pkgs/tolaria/update.sh` |
+| `tolaria` | Tolaria markdown knowledge-base desktop app (Tauri 2); ships as `.deb` from GitHub releases (pinned via `pkgs/tolaria/source-lock.nix`), unpacked and wrapped here with `nodejs` on PATH for the bundled MCP server |
+| `vicu` | Vicu, a keyboard-driven Vikunja desktop task manager; wraps the upstream Linux AppImage (x86_64 + arm64) in an FHS env and installs its desktop entry and icon |
+| `hibi` | Hibi local-first Markdown and document editor; wraps the official Linux AppImage (x86_64 + arm64) in an FHS env with its desktop entry, icon, and MIME types |
+| `lightpanda` | Lightpanda headless browser for AI agents and automation (Zig + V8, CDP/WebDriver BiDi server, `fetch`/`serve`/`agent` modes); ships as a prebuilt upstream release binary pinned by version and per-arch hash, since upstream's Nix build compiles Zig 0.17 against a V8 archive |
+| `kero` | Kero terminal for coding agents, built from the pinned upstream release with libghostty-vt and Linux desktop integration |
 | `hints` | click, scroll, and drag with your keyboard |
 | `opensrc` | fetch and cache source code for packages and repos |
 | `flake-utils` | synchronize selected flake input locks across local flakes with `sync` and `intersection` subcommands; use `sync --update` to refresh the canonical flake first |
@@ -131,6 +135,8 @@ Packages provided by the overlay:
 `abwrap` starts with a clean environment and forwards only terminal/locale metadata by default. Use `--env NAME` for additional variables. A directly selected `pi`, `codex`, or `opencode` entrypoint automatically receives only its own state directory; use `--tool-state TOOL` when launching a tool later from the default Nushell. It also blocks `TIOCSTI` terminal injection and nested user namespaces while retaining native terminal resizing. See the [abwrap documentation](https://github.com/0xferrous/my-nix/blob/main/pkgs/abwrap/README.md) for usage and security details.
 
 `packages.<system>.*` exposes all of the above except the overlay-only entries `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
+
+Packages that track an upstream release expose `passthru.updateScript`. Refresh one from the repo root with `just update-package <name>` (equivalently `nix-update --flake --use-update-script <name>`; the scripts include `--flake` because released nix-update versions do not yet pass flake mode through to the script). The [`update packages`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/update-packages.yml) workflow runs every updatable package weekly and keeps one pull request per package on the stable `update/<name>` branch, so a newer release updates the existing PR. Multi-architecture packages list their aarch64 packages under `legacyPackages.aarch64-linux`; their update scripts use [`pkgs/update-arch-hash.sh`](https://github.com/0xferrous/my-nix/blob/main/pkgs/update-arch-hash.sh) to refresh the non-host hashes without building on the other architecture.
 
 ## Public `fr` config pattern
 
