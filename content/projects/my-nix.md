@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-10-29"
+date = "2026-10-31"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-10-29"
+updated_at = "2026-10-31"
 +++
 
 # my-nix
@@ -95,6 +95,9 @@ Packages provided by the overlay:
 | `pi`, `abwrap`, `pi-acp` | `pi` wraps the llm-agents CLI with bundled extensions/theme and AI tooling; `abwrap` launches Nushell—or a directly selected entrypoint such as `pi`, `codex`, or `opencode`—inside Bubblewrap with a per-invocation writable Nix local-overlay store; `pi-acp` is the Agent Client Protocol adapter |
 | `activitywatch` | desktop time tracking with activity and window watchers, built from upstream v0.14.1 |
 | `herdr` | agent multiplexer that lives in your terminal |
+| `herdr-app` | Herdr desktop app for terminals and coding agents (Linux x86_64 and aarch64), wrapped with its core service |
+| `herdr-core` | Herdr's persistent terminal/agent service and `hc` CLI (Linux x86_64 and aarch64) |
+| `hex` | Hex local voice dictation (Linux beta); reuses the upstream flake package and keeps it on this flake's nixpkgs so its glibc matches the host's Vulkan drivers (x86_64 Linux only) |
 | `dev-essentials` | combined package exposing the shared development essentials on one `PATH` |
 | `executor` | Executor integration service and CLI, packaged from the upstream Linux release |
 | `git-hunk`, `jj-hunk` | non-interactive hunk staging for `git` and `jj` |
@@ -119,6 +122,7 @@ Packages provided by the overlay:
 | `hibi` | Hibi local-first Markdown and document editor; wraps the official Linux AppImage (x86_64 + arm64) in an FHS env with its desktop entry, icon, and MIME types |
 | `lightpanda` | Lightpanda headless browser for AI agents and automation (Zig + V8, CDP/WebDriver BiDi server, `fetch`/`serve`/`agent` modes); ships as a prebuilt upstream release binary pinned by version and per-arch hash, since upstream's Nix build compiles Zig 0.17 against a V8 archive |
 | `kero` | Kero terminal for coding agents, built from the pinned upstream release with libghostty-vt and Linux desktop integration |
+| `framesh` | Frame Ethereum wallet desktop app, packaged from its pinned Linux AppImage because nixpkgs removed it as unmaintained |
 | `hints` | click, scroll, and drag with your keyboard |
 | `opensrc` | fetch and cache source code for packages and repos |
 | `flake-utils` | synchronize selected flake input locks across local flakes with `sync` and `intersection` subcommands; use `sync --update` to refresh the canonical flake first |
@@ -136,7 +140,7 @@ Packages provided by the overlay:
 
 `packages.<system>.*` exposes all of the above except the overlay-only entries `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
 
-Packages that track an upstream release expose `passthru.updateScript`. Refresh one from the repo root with `just update-package <name>` (equivalently `nix-update --flake --use-update-script <name>`; the scripts include `--flake` because released nix-update versions do not yet pass flake mode through to the script). The [`update packages`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/update-packages.yml) workflow runs every updatable package weekly and keeps one pull request per package on the stable `update/<name>` branch, so a newer release updates the existing PR. Multi-architecture packages list their aarch64 packages under `legacyPackages.aarch64-linux`; their update scripts use [`pkgs/update-arch-hash.sh`](https://github.com/0xferrous/my-nix/blob/main/pkgs/update-arch-hash.sh) to refresh the non-host hashes without building on the other architecture.
+Packages that track an upstream release expose `passthru.updateScript`. Refresh one from the repo root with `just update-package <name>` (equivalently `nix-update --flake --use-update-script <name>`; the scripts include `--flake` because released nix-update versions do not yet pass flake mode through to the script). The [`update packages`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/update-packages.yml) workflow runs every updatable package weekly, builds each bumped package before it opens the pull request (so a release that stops building fails the job instead of producing a PR), and keeps one pull request per package on the stable `update/<name>` branch, so a newer release updates the existing PR. The [`package builds`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/package-builds.yml) workflow builds the packages a pull request changes, so those PRs carry their own build check. Multi-architecture packages list their aarch64 packages under `legacyPackages.aarch64-linux`; their update scripts use [`pkgs/update-arch-hash.sh`](https://github.com/0xferrous/my-nix/blob/main/pkgs/update-arch-hash.sh) to refresh the non-host hashes without building on the other architecture.
 
 ## Public `fr` config pattern
 
