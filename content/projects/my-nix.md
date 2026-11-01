@@ -1,12 +1,12 @@
 +++
 title = "my-nix"
 description = "My public nix config, with some reusable modules"
-date = "2026-10-31"
+date = "2026-11-01"
 
 [extra]
 populate_with_readme = true
 link_to = "https://github.com/0xferrous/my-nix"
-updated_at = "2026-10-31"
+updated_at = "2026-11-01"
 +++
 
 # my-nix
@@ -140,7 +140,7 @@ Packages provided by the overlay:
 
 `packages.<system>.*` exposes all of the above except the overlay-only entries `herdr`, `ashWrappers`, `hints`, `plannotator-pi-extension`, and `frsNvimPackage`.
 
-Packages that track an upstream release expose `passthru.updateScript`. Refresh one from the repo root with `just update-package <name>` (equivalently `nix-update --flake --use-update-script <name>`; the scripts include `--flake` because released nix-update versions do not yet pass flake mode through to the script). The [`update packages`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/update-packages.yml) workflow runs every updatable package weekly, builds each bumped package before it opens the pull request (so a release that stops building fails the job instead of producing a PR), and keeps one pull request per package on the stable `update/<name>` branch, so a newer release updates the existing PR. The [`package builds`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/package-builds.yml) workflow builds the packages a pull request changes, so those PRs carry their own build check. Multi-architecture packages list their aarch64 packages under `legacyPackages.aarch64-linux`; their update scripts use [`pkgs/update-arch-hash.sh`](https://github.com/0xferrous/my-nix/blob/main/pkgs/update-arch-hash.sh) to refresh the non-host hashes without building on the other architecture.
+Packages that track an upstream release expose `passthru.updateScript`. Refresh one from the repo root with `just update-package <name>` (equivalently `nix-update --flake --use-update-script <name>`; the scripts include `--flake` because released nix-update versions do not yet pass flake mode through to the script). The [`update packages`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/update-packages.yml) workflow runs every updatable package weekly, builds each bumped package before it opens the pull request, and hands a failing build to an agent that repairs the expression and rebuilds (an unfixable bump becomes a draft `[needs-human]` PR instead of a failing run), and keeps one pull request per package on the stable `update/<name>` branch, so a newer release updates the existing PR. When a bump does not build, [`build-or-autofix.sh`](https://github.com/0xferrous/my-nix/blob/main/.github/scripts/build-or-autofix.sh) hands the build log to `opencode` to repair the package expression and rebuilds, see [the CI notes](https://github.com/0xferrous/my-nix/blob/main/docs/repository-structure.md#self-healing-package-updates). The [`package builds`](https://github.com/0xferrous/my-nix/blob/main/.github/workflows/package-builds.yml) workflow builds the packages a pull request changes, so those PRs carry their own build check; update pull requests get that check from a `workflow_dispatch` the update workflow raises, because GitHub otherwise holds checks on `GITHUB_TOKEN`-created pull requests for manual approval. Multi-architecture packages list their aarch64 packages under `legacyPackages.aarch64-linux`; their update scripts use [`pkgs/update-arch-hash.sh`](https://github.com/0xferrous/my-nix/blob/main/pkgs/update-arch-hash.sh) to refresh the non-host hashes without building on the other architecture.
 
 ## Public `fr` config pattern
 
